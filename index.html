@@ -3,31 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="名前と生年月日から相性を占うアプリ - お二人の相性を様々な角度から分析します">
+    <meta name="theme-color" content="#ff4081">
     <title>相性占い</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>♥ 相性占い ♥</h1>
-        <div class="input-area">
-            <div class="input-group">
-                <label for="name1">あなたの名前：</label>
-                <input type="text" id="name1" placeholder="例：田中太郎" required>
+        <form id="compatibilityForm" onsubmit="handleSubmit(event)">
+            <div class="input-area">
+                <div class="person-info" role="group" aria-labelledby="person1-heading">
+                    <h2 id="person1-heading">あなたの情報</h2>
+                    <div class="input-group">
+                        <label for="name1">名前：</label>
+                        <input type="text" id="name1" placeholder="例：田中太郎" required
+                               aria-required="true">
+                    </div>
+                    <div class="input-group">
+                        <label id="birth1-label">生年月日：</label>
+                        <div class="date-inputs" role="group" aria-labelledby="birth1-label">
+                            <select id="year1" required aria-label="年">
+                            </select>
+                            <label for="year1">年</label>
+                            <select id="month1" required aria-label="月">
+                            </select>
+                            <label for="month1">月</label>
+                            <select id="day1" required aria-label="日">
+                            </select>
+                            <label for="day1">日</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="person-info" role="group" aria-labelledby="person2-heading">
+                    <h2 id="person2-heading">相手の情報</h2>
+                    <div class="input-group">
+                        <label for="name2">名前：</label>
+                        <input type="text" id="name2" placeholder="例：山田花子" required
+                               aria-required="true">
+                    </div>
+                    <div class="input-group">
+                        <label id="birth2-label">生年月日：</label>
+                        <div class="date-inputs" role="group" aria-labelledby="birth2-label">
+                            <select id="year2" required aria-label="年">
+                            </select>
+                            <label for="year2">年</label>
+                            <select id="month2" required aria-label="月">
+                            </select>
+                            <label for="month2">月</label>
+                            <select id="day2" required aria-label="日">
+                            </select>
+                            <label for="day2">日</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="errorMessages" class="error-messages" role="alert" aria-live="polite"></div>
+                <div id="loading" class="loading hidden" role="status" aria-live="polite">
+                    <span class="spinner" aria-hidden="true"></span>
+                    <span>計算中...</span>
+                </div>
+
+                <button type="submit">占う！</button>
             </div>
-            <div class="input-group">
-                <label for="name2">相手の名前：</label>
-                <input type="text" id="name2" placeholder="例：山田花子" required>
+        </form>
+
+        <div id="result" class="hidden" role="region" aria-live="polite">
+            <div class="result-text" aria-atomic="true"></div>
+            <div class="compatibility-details">
+                <div class="detail-item">
+                    <h3>総合相性</h3>
+                    <div class="compatibility-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="bar-fill total"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <h3>名前の相性</h3>
+                    <div class="compatibility-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="bar-fill name"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <h3>干支の相性</h3>
+                    <div class="compatibility-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="bar-fill zodiac"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <h3>星座の相性</h3>
+                    <div class="compatibility-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="bar-fill constellation"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
             </div>
-            <button onclick="calculateCompatibility()">占う！</button>
-        </div>
-        <div id="result" class="hidden">
-            <div class="result-text"></div>
-            <div class="compatibility-bar">
-                <div class="bar-fill"></div>
+            <div class="detail-messages">
+                <div class="zodiac-message"></div>
+                <div class="constellation-message"></div>
             </div>
             <div class="message"></div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
