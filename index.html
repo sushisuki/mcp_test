@@ -10,20 +10,82 @@
     <div class="container">
         <h1>♥ 相性占い ♥</h1>
         <div class="input-area">
-            <div class="input-group">
-                <label for="name1">あなたの名前：</label>
-                <input type="text" id="name1" placeholder="例：田中太郎" required>
+            <div class="person-info">
+                <h2>あなたの情報</h2>
+                <div class="input-group">
+                    <label for="name1">名前：</label>
+                    <input type="text" id="name1" placeholder="例：田中太郎" required>
+                </div>
+                <div class="input-group">
+                    <label>生年月日：</label>
+                    <div class="date-inputs">
+                        <select id="year1" required></select>
+                        <label>年</label>
+                        <select id="month1" required></select>
+                        <label>月</label>
+                        <select id="day1" required></select>
+                        <label>日</label>
+                    </div>
+                </div>
             </div>
-            <div class="input-group">
-                <label for="name2">相手の名前：</label>
-                <input type="text" id="name2" placeholder="例：山田花子" required>
+
+            <div class="person-info">
+                <h2>相手の情報</h2>
+                <div class="input-group">
+                    <label for="name2">名前：</label>
+                    <input type="text" id="name2" placeholder="例：山田花子" required>
+                </div>
+                <div class="input-group">
+                    <label>生年月日：</label>
+                    <div class="date-inputs">
+                        <select id="year2" required></select>
+                        <label>年</label>
+                        <select id="month2" required></select>
+                        <label>月</label>
+                        <select id="day2" required></select>
+                        <label>日</label>
+                    </div>
+                </div>
             </div>
+
             <button onclick="calculateCompatibility()">占う！</button>
         </div>
+
         <div id="result" class="hidden">
             <div class="result-text"></div>
-            <div class="compatibility-bar">
-                <div class="bar-fill"></div>
+            <div class="compatibility-details">
+                <div class="detail-item">
+                    <h3>総合相性</h3>
+                    <div class="compatibility-bar">
+                        <div class="bar-fill total"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <h3>名前の相性</h3>
+                    <div class="compatibility-bar">
+                        <div class="bar-fill name"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <h3>干支の相性</h3>
+                    <div class="compatibility-bar">
+                        <div class="bar-fill zodiac"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <h3>星座の相性</h3>
+                    <div class="compatibility-bar">
+                        <div class="bar-fill constellation"></div>
+                        <span class="percentage"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-messages">
+                <div class="zodiac-message"></div>
+                <div class="constellation-message"></div>
             </div>
             <div class="message"></div>
         </div>
